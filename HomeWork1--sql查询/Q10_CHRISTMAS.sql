@@ -1,0 +1,2 @@
+select group_concat(ProductName) as ProductName from (SELECT Id,ProductName FROM (SELECT OrderId,ProductId as Id FROM (SELECT Id as OrderId FROM "Order" WHERE CustomerId="QUEEN" and OrderDate LIKE "%2014-12-25%") NATURAL JOIN OrderDetail Order BY ProductId
+) NATURAL JOIN Product)；

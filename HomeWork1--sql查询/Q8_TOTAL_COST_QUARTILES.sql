@@ -1,0 +1,3 @@
+SELECT
+GroupId,CustomerId,IFNULL(CompanyName,"MISSING_NAME"),Total_cost FROM (SELECT NTILE (4)OVER(ORDER BY Total_cost) AS GroupId,CustomerId,CompanyName,Total_cost  FROM (SELECT CustomerId,CompanyName,sum(Total) as Total_cost FROM (SELECT OrderId,sum(UnitPrice*Quantity) as Total FROM OrderDetail GROUP BY OrderId) NATURAL JOIN (SELECT o.Id AS OrderId,CustomerId,CompanyName FROM "Order" o LEFT OUTER JOIN Customer c ON c.Id=CustomerId)
+GROUP BY CustomerId));
