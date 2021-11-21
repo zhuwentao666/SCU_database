@@ -1,0 +1,3 @@
+SELECT CategoryName,number,averge,min_one,max_one,total FROM (SELECT CategoryId,ROUND(avg(UnitPrice),2) as averge,min(UnitPrice) as min_one,max(UnitPrice) as max_one,count(*) as number FROM "Product" GROUP BY CategoryId) NATURAL JOIN 
+(SELECT a2.Id as CategoryId,CategoryName,total FROM (SELECT t1.CategoryId as Id,sum(UnitsOnOrder) as total FROM "Product" t0,(SELECT CategoryId FROM (SELECT CategoryId,UnitsOnOrder ,count(*) AS "c" FROM "Product" GROUP BY CategoryId) s1 WHERE s1.c>=10) AS
+"t1" WHERE t1.CategoryId=t0.CategoryId GROUP BY t1.CategoryId) as a2,Category a1 WHERE a2.Id=a1.Id);
