@@ -1,2 +1,0 @@
-SELECT CompanyName,Percent FROM (SELECT s1.ShipVia as Id,(ROUND(CAST(c1 AS DOUBLE)/c2*100, 2)) as Percent FROM (SELECT ShipVia,(count(*)) as "c1" FROM "Order" WHERE RequiredDate<ShippedDate GROUP BY ShipVia) AS s1,
-(SELECT ShipVia,(count(*)) as "c2" FROM "Order" GROUP BY ShipVia) AS s2 WHERE s1.ShipVia=s2.ShipVia) as "d1" NATURAL JOIN "Shipper" Order BY Percent;
