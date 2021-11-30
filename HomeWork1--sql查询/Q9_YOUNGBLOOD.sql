@@ -1,3 +1,0 @@
-SELECT * FROM (SELECT RegionDescription,FirstName,LastName,BirthDate FROM (SELECT DISTINCT RegionDescription,EmployeeId as Id FROM (SELECT t.Id as TerritoryId,r.RegionDescription FROM "Region" r,"Territory" t WHERE RegionId=r.Id) NATURAL JOIN "EmployeeTerritory"
-) NATURAL JOIN "Employee") as S_1 WHERE NOT EXISTS (select * FROM (SELECT RegionDescription,FirstName,LastName,BirthDate FROM (SELECT DISTINCT RegionDescription,EmployeeId as Id FROM (SELECT t.Id as TerritoryId,r.RegionDescription FROM "Region" r,"Territory" t WHERE RegionId=r.Id) NATURAL JOIN "EmployeeTerritory"
-) NATURAL JOIN "Employee") as E_1 WHERE E_1.BirthDate>S_1.BirthDate and E_1.RegionDescription=S_1.RegionDescription) GROUP BY RegionDescription;
